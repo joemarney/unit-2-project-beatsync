@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beatsync</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <%- include('../partials/_navbar.ejs') %>
+  <body>
+    <h1>BEAT<br />SYNC</h1>
+    <form id="register-venue-form" action="/venues" method="post">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" />
+      <label for="location">Location:</label>
+      <input type="text" name="location" id="location" />
+      <label for="description">Description</label>
+      <textarea type="text" name="description" id="description" placeholder="Info about your venue..."></textarea>
+      <label for="logo">Logo:</label>
+      <input type="file" name="logo" class="logo" accept="image/*" />
+      <br />
+      <button type="submit">SUBMIT</button>
+    </form>
+  </body>
+</html>

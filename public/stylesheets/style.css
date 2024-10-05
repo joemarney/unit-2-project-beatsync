@@ -57,7 +57,8 @@ footer {
 }
 
 #sign-up-form,
-#log-in-form {
+#log-in-form,
+#register-venue-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,10 +73,20 @@ footer {
   padding: 20px;
 }
 
-#account-forms {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+input[type="text"],
+input[type="password"],
+textarea {
+  margin: 5px;
+  width: 100%;
+  background-color: grey;
+  color: white;
+}
+input[type="file"] {
+  margin: 5px;
+}
+::placeholder {
+  color: white;
+  font-size: 10px;
 }
 
 #avatar {
@@ -85,4 +96,12 @@ footer {
   transform: translate(-50%, -50%);
   height: 100px;
   width: 100px;
+}
+
+button {
+  font-size: 10px;
+  background-color: #a10000;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid white;
 }

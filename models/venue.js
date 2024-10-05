@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 
 // SCHEMA
 const venueSchema = new mongoose.Schema({
-  title: { type: String, required: ["Add a name", true], unique: true },
-  location: { type: String, required: ["Add a location", true], unique: true },
-  images: [String],
+  name: { type: String, required: ["Please provide a name", true], unique: true },
+  description: { type: String, required: ["Please provide a description", true] },
+  location: { type: String, required: ["Please provide a location", true], unique: true },
+  logo: String,
 });
 
 // MODEL

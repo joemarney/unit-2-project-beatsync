@@ -15,10 +15,10 @@
     <h2>HEY GUEST, DO US A FAVOUR AND <a href="/auth/sign-up">SIGN UP.</a></h2>
     <% } %>
     <div id="home-screen">
-      <a class="home-screen-buttons" href="/venues">ALL VENUES</a>
+      <% if(user && user.isOrganiser === true) { %>
       <a class="home-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
+      <% } %>
+      <a class="home-screen-buttons" href="/venues">ALL VENUES</a>
     </div>
-
-    <a href="/auth/log-out">LOG OUT.</a>
   </body>
 </html>

@@ -18,5 +18,14 @@ router.get("/", async (req, res) => {
     console.log(error);
   }
 });
+
+// NEW FORM
+router.get("/new", async (req, res) => {
+  try {
+    return res.render("venues/new.ejs");
+  } catch (error) {
+    console.log(error);
+  }
+});
 // EXPORT
 module.exports = router;
