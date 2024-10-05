@@ -5,12 +5,17 @@ const bcrypt = require("bcryptjs");
 const router = express.Router();
 
 // MODEL
-const User = require("../models/user");
+const User = require("../models/user.js");
 
 // CONTROLLERS
 // SIGN UP FORM
 router.get("/sign-up", (req, res) => {
-  return res.render("auth/sign-up-or-log-in.ejs");
+  return res.render("auth/sign-up.ejs");
+});
+
+// LOG IN FORM
+router.get("/log-in", (req, res) => {
+  return res.render("auth/log-in.ejs");
 });
 
 // EXPORT

@@ -6,9 +6,12 @@
     <title>Beatsync</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
+  <%- include('./partials/_navbar.ejs') %>
   <body>
-    <%- include('./partials/_navbar.ejs') %>
     <h1>BEAT<br />SYNC</h1>
-    <h2>HEY, FIX. DO US A FAVOUR? <a href="/auth/log-in">LOG IN</a></h2>
+    <% if(user) { %>
+    <h2>HEY, <%= user.username %> WHERE U GOING NEXT?</h2>
+    <% } %>
+    <h2>HEY GUEST, DO US A FAVOUR AND <a href="/auth/sign-up">SIGN UP.</a></h2>
   </body>
 </html>

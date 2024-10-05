@@ -24,8 +24,37 @@
   font-size: 25px;
 }
 
+h1 {
+  color: #a10000;
+}
+
 footer {
+  width: 100%;
   position: fixed;
   bottom: 0;
   z-index: 5;
+  display: flex;
+  justify-content: space-around;
+}
+
+#sign-up-form,
+#log-in-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: transparent;
+  border-radius: 10px;
+  border: 2px solid white;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+}
+
+#account-forms {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

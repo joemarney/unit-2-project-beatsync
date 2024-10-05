@@ -12,6 +12,7 @@ const port = 3000;
 // IMPORT
 const venuesController = require("./controllers/venues.js");
 const authController = require("./controllers/auth.js");
+const userEverywhere = require("./middleware/user-everywhere.js");
 
 // MIDDLEWARE
 app.use(morgan("dev"));
@@ -26,6 +27,7 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
   })
 );
+app.use(userEverywhere);
 
 // LANDING PAGE/LOADING SCREEN
 app.get("/", (req, res) => {
@@ -46,9 +48,9 @@ app.use("/venues", venuesController);
 app.use("/auth", authController);
 
 // 404 HANDLER
-// app.get("*", (req, res) => {
-//   res.render("404.ejs");
-// });
+app.get("*", (req, res) => {
+  res.render("404.ejs");
+});
 
 // SERVER
 const serverStartUp = async () => {

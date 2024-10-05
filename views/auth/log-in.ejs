@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beatsync</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <%- include('../partials/_navbar.ejs') %>
+  <body id="account-forms">
+    <h1>Log in</h1>
+    <form id="log-in-form" action="/auth/log-in" method="post">
+      <label for="username">Username:</label>
+      <input type="text" name="username" class="username" required />
+      <br />
+      <label for="password">Password:</label>
+      <input type="password" name="password" class="password" required />
+      <br />
+      <button type="submit">Log In</button>
+    </form>
+  </body>
+</html>

@@ -6,24 +6,23 @@
     <title>Beatsync</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-  <body>
+  <%- include('../partials/_navbar.ejs') %>
+  <body id="account-forms">
     <h1>Register</h1>
-    <form action="/auth/sign-up" method="post">
+    <form id="sign-up-form" action="/auth/sign-up" method="post">
       <label for="username">Username:</label>
       <input type="text" name="username" class="username" required />
+      <br />
       <label for="password">Password:</label>
       <input type="password" name="password" class="password" required />
+      <br />
       <label for="confirmPassword">Confirm Password:</label>
       <input type="password" name="confirmPassword" id="confirmPassword" required />
-      <button type="submit">Sign Up</button>
       <br />
-      <form action="/auth/log-in" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" class="username" required />
-        <label for="password">Password:</label>
-        <input type="password" name="password" class="password" required />
-        <button type="submit">Log In</button>
-      </form>
+      <label for="isOrganiser">Organiser?</label>
+      <input type="checkbox" name="isOrganiser" id="isOrganiser" />
+      <br />
+      <button type="submit">Sign Up</button>
     </form>
   </body>
 </html>
