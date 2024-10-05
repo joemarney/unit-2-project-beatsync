@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema(
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isOrganiser: Boolean,
-    profileImage: String,
+    avatar: String,
   },
   {
     toJSON: { virtuals: true },

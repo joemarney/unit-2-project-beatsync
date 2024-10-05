@@ -9,7 +9,7 @@
   <%- include('../partials/_navbar.ejs') %>
   <body id="account-forms">
     <h1>Register</h1>
-    <form id="sign-up-form" action="/auth/sign-up" method="post">
+    <form id="sign-up-form" action="/auth/sign-up" method="post" enctype="multipart/form-data">
       <label for="username">Username:</label>
       <input type="text" name="username" class="username" required />
       <br />
@@ -21,6 +21,9 @@
       <br />
       <label for="isOrganiser">Organiser?</label>
       <input type="checkbox" name="isOrganiser" id="isOrganiser" />
+      <br />
+      <label for="avatar">Avatar:</label>
+      <input type="file" name="avatar" id="avatar" accept="image/*" />
       <br />
       <button type="submit">Sign Up</button>
     </form>

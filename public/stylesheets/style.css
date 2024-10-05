@@ -77,3 +77,12 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+#avatar {
+  position: sticky;
+  top: 7%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100px;
+  width: 100px;
+}

@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const upload = require("../middleware/file-upload.js");
 
 // ROUTER
 const router = express.Router();
@@ -13,8 +14,11 @@ router.get("/sign-up", (req, res) => {
   return res.render("auth/sign-up.ejs");
 });
 
-router.post("/sign-up", async (req, res) => {
+router.post("/sign-up", upload.single("avatar"), async (req, res) => {
   try {
+    if (req.file) {
+      req.body.avatar = req.file.path;
+    }
     if (req.body.password !== req.body.confirmPassword) {
       return res.status(422).send("Passwords didn't match");
     }
@@ -43,6 +47,11 @@ router.get("/log-in", (req, res) => {
 });
 
 // LOG OUT
+router.get("/log-out", (req, res) => {
+  req.session.destroy(() => {
+    return res.redirect("/home");
+  });
+});
 
 // USER PROFILE
 router.get("/profile", async (req, res) => {

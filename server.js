@@ -28,6 +28,7 @@ app.use(
   })
 );
 app.use(userEverywhere);
+app.use("/uploads", express.static("uploads"));
 
 // LANDING PAGE/LOADING SCREEN
 app.get("/", (req, res) => {
