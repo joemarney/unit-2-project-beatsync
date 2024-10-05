@@ -1,13 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beatsync</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <%- include('../partials/_navbar.ejs') %>
+  <%- include('../partials/boilerplate.ejs') %>
   <body>
-    <h1>BEAT<br />SYNC</h1>
+    <h1 id="logo">BEAT<br />SYNC</h1>
+    <p id="success"><% if(message) { %><%= message %><% } %></p>
+    <ul>
+      <% venues.forEach(venue => { %>
+      <li>
+        <a href="/venues/<%=venue._id%>"><%= venue.name %></a>
+      </li>
+      <br />
+      <% }) %>
+    </ul>
+    <% if(user && user.isOrganiser === true) { %>
+    <a class="home-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
+    <% } %>
   </body>
 </html>

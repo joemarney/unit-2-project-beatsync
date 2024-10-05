@@ -11,7 +11,8 @@
   transform: translate(-50%, -50%);
 }
 
-#logo {
+#loading-logo {
+  font-family: "Sixtyfour Convergence", sans-serif;
   font-size: 70px;
   color: #a10000;
 }
@@ -24,18 +25,21 @@
   font-size: 25px;
 }
 
-h1 {
+#logo {
+  font-family: "Sixtyfour Convergence", sans-serif;
   color: #a10000;
   text-align: center;
 }
 
-footer {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  z-index: 5;
-  display: flex;
-  justify-content: space-around;
+h1 {
+  color: #a10000;
+  text-align: center;
+}
+h2,
+h3,
+p,
+a {
+  font-family: "Quicksand";
 }
 
 #home-screen {
@@ -67,7 +71,7 @@ footer {
   border-radius: 10px;
   border: 2px solid white;
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
@@ -89,11 +93,25 @@ input[type="file"] {
   font-size: 10px;
 }
 
+#failure {
+  font-size: 10px;
+  color: red;
+}
+#success {
+  font-size: 10px;
+  color: green;
+}
+
 #avatar {
   position: sticky;
   top: 7%;
   left: 50%;
   transform: translate(-50%, -50%);
+  height: 100px;
+  width: 100px;
+}
+
+#venue-logo {
   height: 100px;
   width: 100px;
 }
@@ -104,4 +122,19 @@ button {
   color: white;
   border-radius: 10px;
   border: 1px solid white;
+}
+
+nav,
+#nav {
+  text-decoration: none;
+  font-size: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 5;
 }

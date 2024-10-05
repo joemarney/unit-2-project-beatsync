@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beatsync</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <%- include('../partials/_navbar.ejs') %>
+  <%- include('../partials/boilerplate.ejs') %>
   <body>
-    <h1>BEAT<br />SYNC</h1>
-    <form id="register-venue-form" action="/venues" method="post">
+    <h1 id="logo">BEAT<br />SYNC</h1>
+    <form id="register-venue-form" action="/venues" method="post" enctype="multipart/form-data">
       <label for="name">Name:</label>
-      <input type="text" name="name" id="name" />
+      <input type="text" name="name" id="name" value="<%= values.name %>" required />
+      <% if(errors.name) { %>
+      <p id="failure"><%= errors.name.message %></p>
+      <% } %>
       <label for="location">Location:</label>
-      <input type="text" name="location" id="location" />
+      <input type="text" name="location" id="location" value="<%= values.location %>" required />
+      <% if(errors.location) { %>
+      <p id="failure"><%= errors.location.message %></p>
+      <% } %>
       <label for="description">Description</label>
-      <textarea type="text" name="description" id="description" placeholder="Info about your venue..."></textarea>
+      <textarea type="text" name="description" id="description" placeholder="Info about your venue..." required><%= values.description %></textarea>
+      <% if(errors.description) { %>
+      <p id="failure"><%= errors.description.message %></p>
+      <% } %>
       <label for="logo">Logo:</label>
       <input type="file" name="logo" class="logo" accept="image/*" />
       <br />

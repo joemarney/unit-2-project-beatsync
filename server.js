@@ -13,11 +13,14 @@ const port = 3000;
 const venuesController = require("./controllers/venues.js");
 const authController = require("./controllers/auth.js");
 const userEverywhere = require("./middleware/user-everywhere.js");
+const seeErrors = require("./middleware/errors.js");
+const initFlashMessage = require("./middleware/init-flash-message.js");
 
 // MIDDLEWARE
+app.use(methodOverride("_method"));
 app.use(morgan("dev"));
 app.use(express.static("public"));
-app.use(methodOverride("_method"));
+app.use("/uploads", express.static("uploads"));
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
@@ -28,7 +31,8 @@ app.use(
   })
 );
 app.use(userEverywhere);
-app.use("/uploads", express.static("uploads"));
+app.use(seeErrors);
+app.use(initFlashMessage);
 
 // LANDING PAGE/LOADING SCREEN
 app.get("/", (req, res) => {

@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beatsync</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <%- include('./partials/_navbar.ejs') %>
+  <%- include('./partials/boilerplate.ejs') %>
   <body>
-    <h1>BEAT<br />SYNC</h1>
+    <h1 id="logo">BEAT<br />SYNC</h1>
     <% if(user) { %>
-    <h2>HEY, <%= user.username %> WHERE U GOING NEXT?</h2>
+    <h2>HEY, <%= user.username.toUpperCase() %>.</h2>
+    <h3>SEE THE HOTTEST VENUES:</h3>
     <% } else { %>
     <h2>HEY GUEST, DO US A FAVOUR AND <a href="/auth/sign-up">SIGN UP.</a></h2>
     <% } %>
     <div id="home-screen">
-      <% if(user && user.isOrganiser === true) { %>
+      <% if (user) { %>
+      <a class="home-screen-buttons" href="/venues">ALL VENUES</a>
+      <% } %> <% if(user && user.isOrganiser === true) { %>
       <a class="home-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
       <% } %>
-      <a class="home-screen-buttons" href="/venues">ALL VENUES</a>
     </div>
   </body>
 </html>
