@@ -10,6 +10,13 @@ const Venue = require("../models/venue.js");
 // MIDDLEWARE
 
 // CONTROLLERS
-
+// READ
+router.get("/", async (req, res) => {
+  try {
+    return res.render("venues/index.ejs");
+  } catch (error) {
+    console.log(error);
+  }
+});
 // EXPORT
 module.exports = router;

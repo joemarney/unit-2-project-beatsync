@@ -11,7 +11,12 @@
     <h1>BEAT<br />SYNC</h1>
     <% if(user) { %>
     <h2>HEY, <%= user.username %> WHERE U GOING NEXT?</h2>
-    <% } %>
+    <% } else { %>
     <h2>HEY GUEST, DO US A FAVOUR AND <a href="/auth/sign-up">SIGN UP.</a></h2>
+    <% } %>
+    <div id="home-screen">
+      <a class="home-screen-buttons" href="/venues">ALL VENUES</a>
+      <a class="home-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
+    </div>
   </body>
 </html>
