@@ -48,7 +48,8 @@ a {
   align-items: flex-start;
 }
 
-.on-screen-buttons {
+.on-screen-buttons,
+button {
   text-align: center;
   text-decoration: none;
   font-size: 20px;
@@ -58,12 +59,15 @@ a {
   background-color: #a10000;
   color: white;
   margin: 5px;
+  border: none;
 }
 
 #sign-up-form,
 #log-in-form,
 #register-venue-form,
-#edit-venue-form {
+#edit-venue-form,
+#search,
+#feedback-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -78,6 +82,10 @@ a {
   padding: 20px;
 }
 
+label {
+  font-family: "Quicksand";
+}
+
 input[type="text"],
 input[type="password"],
 textarea {
@@ -85,22 +93,27 @@ textarea {
   width: 100%;
   background-color: grey;
   color: white;
+  border: none;
+  font-family: "Quicksand";
 }
 input[type="file"] {
   margin: 5px;
+  font-family: "Quicksand";
 }
 ::placeholder {
   color: white;
-  font-size: 10px;
+  font-family: "Quicksand";
 }
 
 #failure {
   font-size: 10px;
   color: red;
+  font-family: "Quicksand";
 }
 #success {
   font-size: 10px;
   color: green;
+  font-family: "Quicksand";
 }
 
 #avatar {
@@ -117,12 +130,29 @@ input[type="file"] {
   width: 100px;
 }
 
-button {
-  font-size: 10px;
-  background-color: #a10000;
+#small-logo {
+  height: 20px;
+  width: 20px;
+}
+
+.title {
   color: white;
-  border-radius: 10px;
-  border: 1px solid white;
+  font-family: "Quicksand";
+}
+
+#venue-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  margin-bottom: 10px;
 }
 
 nav,
@@ -138,4 +168,32 @@ footer {
   position: fixed;
   bottom: 0;
   z-index: 5;
+}
+
+.slide-container {
+  width: 100%;
+}
+
+.slider {
+  appearance: none;
+  width: 100%;
+  height: 30px;
+  background-color: grey;
+  outline: none;
+  opacity: 0.3;
+  transition: 0.2s;
+  border-radius: 15px;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #a10000;
+  cursor: pointer;
 }

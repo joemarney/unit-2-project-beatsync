@@ -76,19 +76,37 @@ router.get("/:venueId/edit", async (req, res, next) => {
 });
 
 // UPDATE
-router.put("/:venueId"),
-  upload.single("logo"),
-  async (req, res) => {
-    try {
-      const updateVenue = await Venue.findById(req.params.venueId);
-      if (updateVenue.organiser.equals(req.session.user._id)) {
-        await Venue.findByIdAndUpdate(req.params.venueId, req.body);
-      }
-      return res.redirect(`/venues/${req.params.venueId}`);
-    } catch (error) {
-      console.log(error);
+router.put("/:venueId", upload.single("logo"), async (req, res) => {
+  try {
+    if (req.file) {
+      req.body.logo = req.file.path;
     }
-  };
+    const updateVenue = await Venue.findById(req.params.venueId);
+    if (updateVenue.organiser.equals(req.session.user._id)) {
+      await Venue.findByIdAndUpdate(req.params.venueId, req.body, { returnDocument: "after" });
+    }
+    return res.redirect(`/venues/${req.params.venueId}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// FEEDBACK FORM
+router.get("/:venueId/feedback", async (req, res) => {
+  if (mongoose.Types.ObjectId.isValid(req.params.venueId)) {
+    const rateVenue = await Venue.findById(req.params.venueId);
+    if (!rateVenue) return next();
+    return res.render("venues/feedback.ejs", { venue: rateVenue });
+  }
+});
+
+// POST FEEDBACK
+router.post("/:venueId", async (req, res) => {
+  try {
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 // EXPORT
 module.exports = router;

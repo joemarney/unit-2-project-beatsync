@@ -1,0 +1,31 @@
+<%- include('../partials/boilerplate.ejs') %>
+<body>
+<h1 class="title">GIVE FEEDBACK</h1>
+<form id="feedback-form" action="/venues/<%= venue._id %>/feedback" method="post">
+    <p>Please rate the venue on the following aspects 0-5:</p>
+    <label for="toilet">TOILETS:</label>
+    <div class="slide-container">
+    <input type="range" name="toilet" class="slider" min="0" max="5" step="1" value="0">
+</div>
+    <label for="smokeArea">SMOKING AREA:</label>
+    <div class="slide-container">
+    <input type="range" name="smokeArea" class="slider" min="0" max="5" step="1" value="0">
+</div>
+
+    <label for="security">SECURITY:</label>
+    <div class="slide-container">
+    <input type="range" name="security" class="slider" min="0" max="5" step="1" value="0">
+</div>
+    <label for="soundSystem">SOUND-SYSTEM:</label>
+    <div class="slide-container">
+    <input type="range" name="soundSystem" class="slider" min="0" max="5" step="1" value="0">
+</div>
+    <label for="barPrices">BAR PRICES:</label>
+    <div class="slide-container">
+    <input type="range" name="barPrices" class="slider" min="0" max="5" step="1" value="0">
+</div>
+<br/>
+<button type="submit">SUBMIT FEEDBACK</button>
+</form>
+</body>
+</html>

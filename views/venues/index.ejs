@@ -5,7 +5,7 @@
     <ul>
       <% venues.forEach(venue => { %>
       <li>
-        <a href="/venues/<%=venue._id%>"><%= venue.name %></a>
+        <a class="on-screen-buttons" href="/venues/<%=venue._id%>"><%= venue.name %>&nbsp;<img id="small-logo" src="<%= venue.logo %>"></a> 
       </li>
       <br />
       <% }) %>

@@ -9,7 +9,7 @@ require("dotenv/config");
 const app = express();
 const port = 3000;
 
-// IMPORT
+// IMPORTS
 const venuesController = require("./controllers/venues.js");
 const authController = require("./controllers/auth.js");
 const userEverywhere = require("./middleware/user-everywhere.js");
@@ -43,6 +43,15 @@ app.get("/", (req, res) => {
 app.get("/home", (req, res) => {
   try {
     res.render("home.ejs");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// SEARCH
+app.get("/search", async (req, res) => {
+  try {
+    return res.render("search.ejs");
   } catch (error) {
     console.log(error);
   }

@@ -14,6 +14,7 @@ router.get("/sign-up", (req, res) => {
   return res.render("auth/sign-up.ejs");
 });
 
+// SIGN UP
 router.post("/sign-up", upload.single("avatar"), async (req, res) => {
   try {
     if (req.file) {
