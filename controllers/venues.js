@@ -101,8 +101,16 @@ router.get("/:venueId/feedback", async (req, res) => {
 });
 
 // POST FEEDBACK
-router.post("/:venueId", async (req, res) => {
+router.post("/:venueId/feedback", async (req, res, next) => {
   try {
+    req.body.user = req.session.user._id;
+    const rateVenue = await Venue.findById(req.params.venueId);
+    if (!rateVenue) return next();
+    console.log(req.body);
+    rateVenue.feedback.push(req.body);
+    req.session.message = "Feedback submitted successfully!";
+    await rateVenue.save();
+    return res.redirect(`/venues/${req.params.venueId}`);
   } catch (error) {
     console.log(error);
   }

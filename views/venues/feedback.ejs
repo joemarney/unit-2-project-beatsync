@@ -3,29 +3,30 @@
 <h1 class="title">GIVE FEEDBACK</h1>
 <form id="feedback-form" action="/venues/<%= venue._id %>/feedback" method="post">
     <p>Please rate the venue on the following aspects 0-5:</p>
-    <label for="toilet">TOILETS:</label>
+    <label for="toilet">TOILETS:<p id="toiletRating">0 ★</p></label>
     <div class="slide-container">
-    <input type="range" name="toilet" class="slider" min="0" max="5" step="1" value="0">
+    <input type="range" name="toilet" class="slider" min="0" max="5" step="1" value="0" oninput="toiletRating.innerText = this.value+ ' ★'">
 </div>
-    <label for="smokeArea">SMOKING AREA:</label>
+    <label for="smokeArea">SMOKING AREA:<p id="smokeAreaRating">0 ★</p></label>
     <div class="slide-container">
-    <input type="range" name="smokeArea" class="slider" min="0" max="5" step="1" value="0">
+    <input type="range" name="smokeArea" class="slider" min="0" max="5" step="1" value="0" oninput="smokeAreaRating.innerText = this.value+ ' ★'">
 </div>
 
-    <label for="security">SECURITY:</label>
+    <label for="security">SECURITY:<p id="securityRating">0 ★</p></label>
     <div class="slide-container">
-    <input type="range" name="security" class="slider" min="0" max="5" step="1" value="0">
+    <input type="range" name="security" class="slider" min="0" max="5" step="1" value="0" oninput="securityRating.innerText = this.value+ ' ★'">
 </div>
-    <label for="soundSystem">SOUND-SYSTEM:</label>
+    <label for="soundSystem">SOUND-SYSTEM:<p id="soundRating">0 ★</p></label>
     <div class="slide-container">
-    <input type="range" name="soundSystem" class="slider" min="0" max="5" step="1" value="0">
+    <input type="range" name="soundSystem" class="slider" min="0" max="5" step="1" value="0" oninput="soundRating.innerText = this.value+ ' ★'">
 </div>
-    <label for="barPrices">BAR PRICES:</label>
+    <label for="barPrices">BAR PRICES:<p id="barRating">0 ★</p></label>
     <div class="slide-container">
-    <input type="range" name="barPrices" class="slider" min="0" max="5" step="1" value="0">
+    <input type="range" name="barPrices" class="slider" min="0" max="5" step="1" value="0" oninput="barRating.innerText = this.value+ ' ★'">
 </div>
 <br/>
 <button type="submit">SUBMIT FEEDBACK</button>
 </form>
+<a class="on-screen-buttons" href="/venues/<%= venue._id %>">BACK</a>
 </body>
 </html>

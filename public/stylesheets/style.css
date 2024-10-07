@@ -75,10 +75,6 @@ button {
   background-color: transparent;
   border-radius: 10px;
   border: 2px solid white;
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   padding: 20px;
 }
 
@@ -196,4 +192,18 @@ footer {
   border-radius: 50%;
   background-color: #a10000;
   cursor: pointer;
+}
+
+.feedback-box {
+  border: 2px solid white;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+#feedback-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
