@@ -62,5 +62,33 @@ router.get("/:venueId", async (req, res, next) => {
   }
 });
 
+// EDIT FORM
+router.get("/:venueId/edit", async (req, res, next) => {
+  try {
+    if (mongoose.Types.ObjectId.isValid(req.params.venueId)) {
+      const editVenue = await Venue.findById(req.params.venueId);
+      if (!editVenue) return next();
+      return res.render("venues/edit.ejs", { venue: editVenue });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// UPDATE
+router.put("/:venueId"),
+  upload.single("logo"),
+  async (req, res) => {
+    try {
+      const updateVenue = await Venue.findById(req.params.venueId);
+      if (updateVenue.organiser.equals(req.session.user._id)) {
+        await Venue.findByIdAndUpdate(req.params.venueId, req.body);
+      }
+      return res.redirect(`/venues/${req.params.venueId}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 // EXPORT
 module.exports = router;

@@ -48,7 +48,7 @@ a {
   align-items: flex-start;
 }
 
-.home-screen-buttons {
+.on-screen-buttons {
   text-align: center;
   text-decoration: none;
   font-size: 20px;
@@ -62,7 +62,8 @@ a {
 
 #sign-up-form,
 #log-in-form,
-#register-venue-form {
+#register-venue-form,
+#edit-venue-form {
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -9,9 +9,9 @@
     <% } %>
     <div id="home-screen">
       <% if (user) { %>
-      <a class="home-screen-buttons" href="/venues">ALL VENUES</a>
+      <a class="on-screen-buttons" href="/venues">ALL VENUES</a>
       <% } %> <% if(user && user.isOrganiser === true) { %>
-      <a class="home-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
+      <a class="on-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
       <% } %>
     </div>
   </body>

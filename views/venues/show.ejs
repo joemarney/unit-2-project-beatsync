@@ -5,5 +5,10 @@
     <h2><%= venue.name %></h2>
     <h3><%= venue.location %></h3>
     <h3><%= venue.description %></h3>
+    <% if (user && user.isOrganiser === true) { %>
+     <a class="on-screen-buttons" href="/venues/<%= venue._id %>/edit">EDIT DETAILS</a>
+    <% } %>
+    <br/>
+    <a class="on-screen-buttons" href="/venues">BACK</a>
   </body>
 </html>

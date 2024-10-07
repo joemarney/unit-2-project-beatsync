@@ -1,0 +1,18 @@
+<%- include('../partials/boilerplate.ejs') %>
+<body>
+  <h1 id="logo">BEAT<br />SYNC</h1>
+  <form id="edit-venue-form" action="/venues/<%= venue._id %>?_method=PUT" method="post" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="<%= venue.name %>" required />
+    <label for="location">Location:</label>
+    <input type="text" name="location" id="location" value="<%= venue.location %>" required />
+    <label for="description">Description</label>
+    <textarea type="text" name="description" id="description" placeholder="Info about your venue..." required><%= venue.description %></textarea>
+    <label for="logo">Logo:</label>
+    <input type="file" name="logo" class="logo" accept="image/*"/>
+    <br />
+    <button type="submit">CHANGE <%= venue.name.toUpperCase() %></button>
+  </form>
+  <a class="on-screen-buttons" href="/venues/<%= venue._id %>">BACK</a>
+</body>
+</html>
