@@ -28,6 +28,7 @@ const venueSchema = new mongoose.Schema({
     required: true,
   },
   feedback: [feedbackSchema],
+  favourites: [{ type: mongoose.Types.ObjectId, ref: "User" }],
 });
 
 // MODEL

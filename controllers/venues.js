@@ -116,5 +116,31 @@ router.post("/:venueId/feedback", async (req, res, next) => {
   }
 });
 
+// FAVOURITE A VENUE
+router.post("/:venueId/favourite", async (req, res, next) => {
+  try {
+    const venue = await Venue.findById(req.params.venueId);
+    if (!venue) return next();
+    venue.favourites.push(req.session.user._id);
+    await venue.save();
+    return res.redirect(`/venues/${req.params.venueId}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// UNDO FAVOURITE
+router.delete("/:venueId/favourite", async (req, res, next) => {
+  try {
+    const venue = await Venue.findById(req.params.venueId);
+    if (!venue) return next();
+    venue.favourites.pull(req.session.user._id);
+    await venue.save();
+    return res.redirect(`/venues/${req.params.venueId}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // EXPORT
 module.exports = router;

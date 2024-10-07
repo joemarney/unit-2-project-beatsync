@@ -1,11 +1,23 @@
   <%- include('../partials/boilerplate.ejs') %>
   <body>
+    <% if (user) { %>
+      <% if (venue.favourites.some(liker => liker.equals(user._id))) { %>
+        <form action="/venues/<%= venue._id %>/favourite?_method=DELETE" method="post">
+          <button class="favourite-btn">★</button>
+          <span><%= venue.favourites.length %></span>
+        </form>
+        <% } else { %>
+          <form action="/venues/<%= venue._id %>/favourite" method="post">
+            <button class="favourite-btn">☆</button>
+            <span><%= venue.favourites.length %></span>
+      </form>
+    <% } %>
+    <% } %>
     <div id="venue-info">
     <h1 class="title"><%= venue.name %></h1>
     <img src="/<%= venue.logo %>" alt="<%= venue.name %>'s logo" id="venue-logo" />
     <h3><%= venue.location %></h3>
     <h3><%= venue.description %></h3>
-    <span><%=  %></span>
   </div>
     <% if (user && user.isOrganiser === true) { %>
      <a class="on-screen-buttons" href="/venues/<%= venue._id %>/edit">EDIT DETAILS</a>

@@ -199,6 +199,7 @@ footer {
   width: fit-content;
   padding: 5px;
   border-radius: 15px;
+  margin-right: 10px;
 }
 
 #feedback-container {
@@ -206,4 +207,12 @@ footer {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.favourite-btn {
+  background-color: transparent;
+  font-size: 40px;
+  color: #a10000;
+  margin: 0;
+  padding: 0;
 }
