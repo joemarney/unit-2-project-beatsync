@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema(
   {
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    isOrganiser: Boolean,
+    isCreator: Boolean,
     avatar: String,
   },
   {
@@ -23,7 +23,7 @@ userSchema.virtual("likedVenues", {
 userSchema.virtual("venuesCreated", {
   ref: "Venue",
   localField: "_id",
-  foreignField: "organiser",
+  foreignField: "creator",
 });
 
 // MODEL

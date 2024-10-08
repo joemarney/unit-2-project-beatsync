@@ -23,7 +23,7 @@ router.post("/", upload.single("logo"), async (req, res) => {
     if (req.file) {
       req.body.logo = req.file.path;
     }
-    req.body.organiser = req.session.user._id;
+    req.body.creator = req.session.user._id;
     const newVenue = await Venue.create(req.body);
     req.session.message = "Venue Registered Successfully";
     req.session.save(() => {
@@ -52,7 +52,7 @@ router.get("/", async (req, res) => {
 router.get("/:venueId", async (req, res, next) => {
   try {
     if (mongoose.Types.ObjectId.isValid(req.params.venueId)) {
-      const venue = await Venue.findById(req.params.venueId).populate("organiser").populate("feedback.user");
+      const venue = await Venue.findById(req.params.venueId).populate("creator").populate("feedback.user");
       if (!venue) return next();
       return res.render("venues/show.ejs", { venue });
     }
@@ -82,10 +82,24 @@ router.put("/:venueId", upload.single("logo"), async (req, res) => {
       req.body.logo = req.file.path;
     }
     const updateVenue = await Venue.findById(req.params.venueId);
-    if (updateVenue.organiser.equals(req.session.user._id)) {
+    if (updateVenue.creator.equals(req.session.user._id)) {
       await Venue.findByIdAndUpdate(req.params.venueId, req.body, { returnDocument: "after" });
     }
     return res.redirect(`/venues/${req.params.venueId}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// DELETE
+router.delete("/:venueId", async (req, res) => {
+  try {
+    const deleteVenue = await Venue.findById(req.params.venueId);
+    if (deleteVenue.creator.equals(req.session.user._id)) {
+      await Venue.findByIdAndDelete(req.params.venueId);
+      req.session.message = "Venue deleted successfully";
+      return res.redirect("/venues");
+    }
   } catch (error) {
     console.log(error);
   }
@@ -119,9 +133,10 @@ router.post("/:venueId/feedback", async (req, res, next) => {
 // FAVOURITE A VENUE
 router.post("/:venueId/favourite", async (req, res, next) => {
   try {
-    const venue = await Venue.findById(req.params.venueId);
+    const venue = await Venue.findById(req.params.venueId).populate("favourites");
     if (!venue) return next();
     venue.favourites.push(req.session.user._id);
+    console.log(venue);
     await venue.save();
     return res.redirect(`/venues/${req.params.venueId}`);
   } catch (error) {

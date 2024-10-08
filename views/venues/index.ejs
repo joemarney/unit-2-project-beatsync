@@ -2,16 +2,23 @@
   <body>
     <h1 id="logo">BEAT<br />SYNC</h1>
     <p id="success"><% if(message) { %><%= message %><% } %></p>
-    <ul>
-      <% venues.forEach(venue => { %>
-      <li>
-        <a class="on-screen-buttons" href="/venues/<%=venue._id%>"><%= venue.name %>&nbsp;<img id="small-logo" src="<%= venue.logo %>"></a> 
-      </li>
-      <br />
-      <% }) %>
-    </ul>
-    <% if(user && user.isOrganiser === true) { %>
-    <a class="on-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
-    <% } %>
+    <% if (venues.length > 0) { %>
+      <ul>
+        <% venues.forEach(venue => { %>
+          <li>
+            <a class="on-screen-buttons" href="/venues/<%=venue._id%>"><%= venue.name %>&nbsp;<img id="small-logo" src="<%= venue.logo %>"></a> 
+          </li>
+          <br />
+          <% }) %>
+        </ul>
+        <% if(user && user.isCreator === true) { %>
+          <a class="on-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
+          <% } %>
+          <% } else { %>
+            <p>No venues have been made yet.</p>
+            <% if(user && user.isCreator === true) { %>
+              <a class="on-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
+              <% } %>
+            <% } %>
   </body>
 </html>

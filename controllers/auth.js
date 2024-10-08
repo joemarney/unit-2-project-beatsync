@@ -24,16 +24,16 @@ router.post("/sign-up", upload.single("avatar"), async (req, res) => {
       return res.status(422).send("Passwords didn't match");
     }
     req.body.password = bcrypt.hashSync(req.body.password, 10);
-    if (req.body.isOrganiser === "on") {
-      req.body.isOrganiser = true;
+    if (req.body.isCreator === "on") {
+      req.body.isCreator = true;
     } else {
-      req.body.isOrganiser = false;
+      req.body.isCreator = false;
     }
     const newUser = await User.create(req.body);
     req.session.user = {
       username: newUser.username,
       _id: newUser._id,
-      isOrganiser: newUser.isOrganiser,
+      isCreator: newUser.isCreator,
     };
     req.session.save(() => {
       return res.redirect("/home");
@@ -61,7 +61,7 @@ router.post("/log-in", async (req, res) => {
     req.session.user = {
       _id: existingUser._id,
       username: existingUser.username,
-      isOrganiser: existingUser.isOrganiser,
+      isCreator: existingUser.isCreator,
     };
     req.session.save(() => {
       return res.redirect("/home");
@@ -82,7 +82,8 @@ router.get("/log-out", (req, res) => {
 // USER PROFILE
 router.get("/profile", async (req, res) => {
   try {
-    const userProfile = await User.findById(req.session.user._id).populate("likedVenues").populate("venuesCreated");
+    const userProfile = await User.findById(req.session.user._id);
+    console.log(userProfile);
     return res.render("auth/profile.ejs", { profile: userProfile });
   } catch (error) {
     console.log(error);

@@ -19,8 +19,12 @@
     <h3><%= venue.location %></h3>
     <h3><%= venue.description %></h3>
   </div>
-    <% if (user && user.isOrganiser === true) { %>
+    <% if (user && venue.creator._id.equals(user._id)) { %>
+      <p>You created this venue</p>
      <a class="on-screen-buttons" href="/venues/<%= venue._id %>/edit">EDIT DETAILS</a>
+     <form action="/venues/<%= venue._id %>?_method=DELETE" method="post">
+       <button class="on-screen-buttons">DELETE <%= venue.name.toUpperCase() %></button>
+     </form>
     <% } %>
     <% if (user) { %>
      <a class="on-screen-buttons" href="/venues/<%= venue._id %>/feedback">GIVE FEEDBACK</a>

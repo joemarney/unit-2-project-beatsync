@@ -22,7 +22,7 @@ const venueSchema = new mongoose.Schema({
   description: { type: String, required: ["Please provide a description", true] },
   location: { type: String, required: ["Please provide a location", true], unique: true },
   logo: String,
-  organiser: {
+  creator: {
     type: mongoose.Types.ObjectId,
     ref: "User",
     required: true,
