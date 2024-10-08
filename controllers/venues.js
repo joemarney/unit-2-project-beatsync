@@ -85,6 +85,7 @@ router.put("/:venueId", upload.single("logo"), async (req, res) => {
     if (updateVenue.creator.equals(req.session.user._id)) {
       await Venue.findByIdAndUpdate(req.params.venueId, req.body, { returnDocument: "after" });
     }
+    req.session.message = "Venue updated successfully";
     return res.redirect(`/venues/${req.params.venueId}`);
   } catch (error) {
     console.log(error);

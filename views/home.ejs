@@ -1,17 +1,20 @@
   <%- include('./partials/boilerplate.ejs') %>
   <body>
     <h1 id="logo">BEAT<br />SYNC</h1>
+    <div id="home-screen">
     <% if(user) { %>
-    <h2>HEY, <%= user.username.toUpperCase() %>.</h2>
+    <h2>Hey, <%= user.username %>.</h2>
     <h3>SEE THE HOTTEST VENUES:</h3>
     <% } else { %>
-    <h2>HEY GUEST, DO US A FAVOUR AND <a href="/auth/sign-up">SIGN UP.</a></h2>
+      <h2>Hey Guest! if you don't have an account already:<a href="/auth/sign-up">sign up.</a></h2>
+      <h3>SEE THE HOTTEST VENUES:</h3>
+    <a class="on-screen-buttons" href="/auth/sign-up">ALL VENUES</a>
+    <h2>If you already have an account:<a href="/auth/log-in">log in.</a></h2>
     <% } %>
-    <div id="home-screen">
       <% if (user) { %>
       <a class="on-screen-buttons" href="/venues">ALL VENUES</a>
-      <% } %> <% if(user && user.isOrganiser === true) { %>
-      <a class="on-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
+      <% } %> <% if(user && user.isCreator === true) { %>
+      <a class="on-screen-buttons" href="/venues/new">ADD A VENUE</a>
       <% } %>
     </div>
   </body>

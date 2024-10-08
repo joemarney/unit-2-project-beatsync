@@ -14,38 +14,39 @@
     <% } %>
     <% } %>
     <div id="venue-info">
+      
     <h1 class="title"><%= venue.name %></h1>
     <img src="/<%= venue.logo %>" alt="<%= venue.name %>'s logo" id="venue-logo" />
     <h3><%= venue.location %></h3>
     <h3><%= venue.description %></h3>
   </div>
     <% if (user && venue.creator._id.equals(user._id)) { %>
-      <p>You created this venue</p>
-     <a class="on-screen-buttons" href="/venues/<%= venue._id %>/edit">EDIT DETAILS</a>
+      <p>You created this venue</p><br/>
+     <a class="on-screen-buttons" href="/venues/<%= venue._id %>/edit">EDIT <%= venue.name.toUpperCase() %></a>
      <form action="/venues/<%= venue._id %>?_method=DELETE" method="post">
        <button class="on-screen-buttons">DELETE <%= venue.name.toUpperCase() %></button>
      </form>
-    <% } %>
+    <% } else { %>
+      <p>Created by: <%= venue.creator.username %></p><br/>
     <% if (user) { %>
      <a class="on-screen-buttons" href="/venues/<%= venue._id %>/feedback">GIVE FEEDBACK</a>
     <% } %>
-    <a class="on-screen-buttons" href="/venues">BACK</a>
-  </body>
-  <h1 class="title">Ratings:</h1>
-  <p id="success"><% if(message) { %><%= message %><% } %></p>
-  <div id="feedback-container">
-  <% venue.feedback.forEach(rating => { %>
-   <p class="feedback-box">
-    <strong><%= rating.user.username %></strong>
-    <small><%= new Date(rating.createdAt).toDateString() %></small>
-    <br/>
-    Toilets: <%= rating.toilet %> ★<br/>
-    Smoking Area: <%= rating.smokeArea %> ★<br/>
-    Security: <%= rating.security %> ★<br/>
-    Sound-System: <%= rating.soundSystem %> ★<br/>
-    Bar Prices: <%= rating.barPrices %> ★<br/>
-  </p>
-  <% }) %>
-</div>
-  
+    <% } %>
+    <p id="success"><% if(message) { %><%= message %><% } %></p>
+    <h1 class="title">Ratings:</h1>
+    <div id="feedback-container">
+      <% venue.feedback.forEach(rating => { %>
+        <p class="feedback-box">
+          <strong><%= rating.user.username %></strong>
+          <small><%= new Date(rating.createdAt).toDateString() %></small>
+          <br/>
+          Toilets: <%= rating.toilet %> ★<br/>
+          Smoking Area: <%= rating.smokeArea %> ★<br/>
+          Security: <%= rating.security %> ★<br/>
+          Sound-System: <%= rating.soundSystem %> ★<br/>
+          Bar Prices: <%= rating.barPrices %> ★<br/>
+        </p>
+        <% }) %>
+      </div>
+    </body>
 </html>

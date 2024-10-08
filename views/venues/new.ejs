@@ -1,6 +1,7 @@
   <%- include('../partials/boilerplate.ejs') %>
   <body>
     <h1 id="logo">BEAT<br />SYNC</h1>
+    <h1 class="title">Add a venue</h1>
     <form id="register-venue-form" action="/venues" method="post" enctype="multipart/form-data">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" value="<%= values.name %>" required />

@@ -12,12 +12,12 @@
           <% }) %>
         </ul>
         <% if(user && user.isCreator === true) { %>
-          <a class="on-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
+          <a class="on-screen-buttons" href="/venues/new">ADD A VENUE</a>
           <% } %>
           <% } else { %>
             <p>No venues have been made yet.</p>
             <% if(user && user.isCreator === true) { %>
-              <a class="on-screen-buttons" href="/venues/new">REGISTER A VENUE</a>
+              <a class="on-screen-buttons" href="/venues/new">ADD A VENUE</a>
               <% } %>
             <% } %>
   </body>
