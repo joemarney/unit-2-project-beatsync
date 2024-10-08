@@ -82,7 +82,7 @@ router.get("/log-out", (req, res) => {
 // USER PROFILE
 router.get("/profile", async (req, res) => {
   try {
-    const userProfile = await User.findById(req.session.user._id);
+    const userProfile = await User.findById(req.session.user._id).populate("likedVenues").populate("feedbackGiven");
     console.log(userProfile);
     return res.render("auth/profile.ejs", { profile: userProfile });
   } catch (error) {

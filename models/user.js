@@ -17,13 +17,13 @@ const userSchema = new mongoose.Schema(
 userSchema.virtual("likedVenues", {
   ref: "Venue",
   localField: "_id",
-  foreignField: "likes",
+  foreignField: "favourites",
 });
 
-userSchema.virtual("venuesCreated", {
+userSchema.virtual("feedbackGiven", {
   ref: "Venue",
   localField: "_id",
-  foreignField: "creator",
+  foreignField: "feedback",
 });
 
 // MODEL

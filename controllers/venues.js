@@ -119,7 +119,7 @@ router.get("/:venueId/feedback", async (req, res) => {
 router.post("/:venueId/feedback", async (req, res, next) => {
   try {
     req.body.user = req.session.user._id;
-    const rateVenue = await Venue.findById(req.params.venueId);
+    const rateVenue = await Venue.findById(req.params.venueId).populate("feedback");
     if (!rateVenue) return next();
     console.log(req.body);
     rateVenue.feedback.push(req.body);

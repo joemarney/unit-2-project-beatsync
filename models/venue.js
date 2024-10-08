@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 // SCHEMA
 const feedbackSchema = new mongoose.Schema(
   {
-    toilet: { type: Number },
-    smokeArea: String,
-    security: String,
-    soundSystem: String,
-    barPrices: String,
+    toilet: Number,
+    smokeArea: Number,
+    security: Number,
+    soundSystem: Number,
+    barPrices: Number,
     user: {
       type: mongoose.Types.ObjectId,
       ref: "User",

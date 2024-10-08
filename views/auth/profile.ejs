@@ -2,6 +2,21 @@
   <body>
     <img src="/<%= profile.avatar %>" alt="<%= user.username %>'s avatar" id="avatar" />
     <h1 class="title"><%= user.username %></h1>
-    <a class="on-screen-buttons" href="/auth/log-out">LOG OUT</a>
-  </body>
+    <h2 class="title">Favourites:</h2>
+    <% profile.likedVenues.forEach(like => { %>
+      <ul>
+        <li id="profile-list"><a class="on-screen-buttons" href="/venues/<%= like._id %>"><%= like.name %>&nbsp;<img id="small-logo" src="../<%= like.logo %>"></a></li>
+      </ul>
+      
+      <% }) %>
+      <br />
+      <% profile.feedbackGiven.forEach(rating => { %>
+        <ul>
+          <li id="profile-list"><%= rating %></li>
+        </ul>
+        
+        <% }) %>
+        <br/>
+      <a class="on-screen-buttons" href="/auth/log-out">LOG OUT</a>
+    </body>
 </html>
