@@ -27,6 +27,7 @@
 <br/>
 <button type="submit">SUBMIT FEEDBACK</button>
 <a class="on-screen-buttons" href="/venues/<%= venue._id %>">CANCEL</a>
+<p id="failure"><% if(message) { %><%= message %><% } %></p>
 </form>
 </body>
 </html>

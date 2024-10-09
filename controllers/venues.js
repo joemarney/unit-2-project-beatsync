@@ -45,6 +45,7 @@ router.get("/", async (req, res) => {
     return res.render("venues/index.ejs", { venues: venues });
   } catch (error) {
     console.log(error);
+    return res.status(500).send("Error");
   }
 });
 
@@ -59,6 +60,7 @@ router.get("/:venueId", async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
+    return res.status(500).send("Error");
   }
 });
 
@@ -68,8 +70,12 @@ router.get("/:venueId/edit", async (req, res, next) => {
     if (mongoose.Types.ObjectId.isValid(req.params.venueId)) {
       const editVenue = await Venue.findById(req.params.venueId);
       if (!editVenue) return next();
+      if (!editVenue.creator.equals(req.session.user._id)) {
+        return res.redirect(`/venues/${req.params.venueId}`);
+      }
       return res.render("venues/edit.ejs", { venue: editVenue });
     }
+    next();
   } catch (error) {
     console.log(error);
   }
@@ -84,11 +90,13 @@ router.put("/:venueId", upload.single("logo"), async (req, res) => {
     const updateVenue = await Venue.findById(req.params.venueId);
     if (updateVenue.creator.equals(req.session.user._id)) {
       await Venue.findByIdAndUpdate(req.params.venueId, req.body, { returnDocument: "after" });
+      req.session.message = "Venue updated successfully!";
+      return res.redirect(`/venues/${req.params.venueId}`);
     }
-    req.session.message = "Venue updated successfully!";
-    return res.redirect(`/venues/${req.params.venueId}`);
+    throw new Error("User cannot perform this action!");
   } catch (error) {
     console.log(error);
+    return res.status(500).send("Error");
   }
 });
 
@@ -103,6 +111,7 @@ router.delete("/:venueId", async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    return res.status(500).send("Error");
   }
 });
 
@@ -128,6 +137,7 @@ router.post("/:venueId/feedback", async (req, res, next) => {
     return res.redirect(`/venues/${req.params.venueId}`);
   } catch (error) {
     console.log(error);
+    return res.status(500).send("Error");
   }
 });
 
@@ -147,6 +157,7 @@ router.delete("/:venueId/feedback/:feedbackId", async (req, res, next) => {
     return res.redirect("/auth/profile");
   } catch (error) {
     console.log(error);
+    return res.status(500).send("Error");
   }
 });
 
@@ -161,6 +172,7 @@ router.post("/:venueId/favourite", async (req, res, next) => {
     return res.redirect(`/venues/${req.params.venueId}`);
   } catch (error) {
     console.log(error);
+    return res.status(500).send("Error");
   }
 });
 
@@ -174,6 +186,7 @@ router.delete("/:venueId/favourite", async (req, res, next) => {
     return res.redirect(`/venues/${req.params.venueId}`);
   } catch (error) {
     console.log(error);
+    return res.status(500).send("Error");
   }
 });
 

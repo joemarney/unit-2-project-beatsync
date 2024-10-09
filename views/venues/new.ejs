@@ -4,17 +4,17 @@
     <h1 class="title">Add a venue</h1>
     <form id="register-venue-form" action="/venues" method="post" enctype="multipart/form-data">
       <label for="name">Name:</label>
-      <input type="text" name="name" id="name" value="<%= values.name %>" required />
+      <input type="text" name="name" id="name" value="<%= values.name %>"  />
       <% if(errors.name) { %>
       <p id="failure"><%= errors.name.message %></p>
       <% } %>
       <label for="location">Location:</label>
-      <input type="text" name="location" id="location" value="<%= values.location %>" required />
+      <input type="text" name="location" id="location" value="<%= values.location %>"  />
       <% if(errors.location) { %>
       <p id="failure"><%= errors.location.message %></p>
       <% } %>
       <label for="description">Description</label>
-      <textarea type="text" name="description" id="description" placeholder="Info about your venue..." required><%= values.description %></textarea>
+      <textarea type="text" name="description" id="description" placeholder="Info about your venue..." ><%= values.description %></textarea>
       <% if(errors.description) { %>
       <p id="failure"><%= errors.description.message %></p>
       <% } %>

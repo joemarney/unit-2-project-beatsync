@@ -40,6 +40,11 @@ router.post("/sign-up", upload.single("avatar"), async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    if (error.code === 11000) {
+      const uniqueUser = Object.entries(error.keyValue)[0];
+      return res.status(422).send(`${uniqueUser[0]} ${uniqueUser[1]} already in use`);
+    }
+    return res.status(500).send("Error");
   }
 });
 
@@ -69,6 +74,7 @@ router.post("/log-in", async (req, res) => {
     console.log(req.session.user);
   } catch (error) {
     console.log(error);
+    return res.status(500).send("Error");
   }
 });
 

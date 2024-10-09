@@ -116,6 +116,7 @@ input[type="file"] {
   font-size: 10px;
   color: red;
   font-family: "Quicksand";
+  margin: 0;
 }
 #success {
   font-size: 10px;
@@ -231,4 +232,11 @@ footer {
 
 #profile-list {
   margin-bottom: 30px;
+}
+
+#lost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

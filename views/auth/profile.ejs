@@ -16,6 +16,10 @@
         <p>You haven't favourited any venues yet!</p>
        <% } %>
       <h2 class="title">Feedback Given:</h2>
+      <p id="success"><% if(message) { %><%= message %><% } %></p>
+      <% if (profile.feedbackGiven.length <= 0) { %>
+       <p>You haven't given any feedback yet!</p>
+      <% } %>
       <div id="feedback-container">
         <% profile.feedbackGiven.forEach(venue => { %>
           <% venue.feedback.forEach(rating => { %>
@@ -25,8 +29,7 @@
                   <%= venue.name %>
               <li>
                 <p class="feedback-box">
-                  <small><%= new Date(rating.createdAt).toDateString() %></small>
-                  <br/>
+                  <small><%= new Date(rating.createdAt).toDateString() %></small><br/>
                   Toilets: <%= rating.toilet %> ★<br/>
                   Smoking Area: <%= rating.smokeArea %> ★<br/>
                   Security: <%= rating.security %> ★<br/>
@@ -41,9 +44,5 @@
        <% }) %>
         <% }) %>
       </div>
-      <p id="success"><% if(message) { %><%= message %><% } %></p>
-      <% if (profile.feedbackGiven.length <= 0) { %>
-       <p>You haven't given any feedback yet!</p>
-      <% } %>
     </body>
 </html>
