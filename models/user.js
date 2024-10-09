@@ -23,7 +23,7 @@ userSchema.virtual("likedVenues", {
 userSchema.virtual("feedbackGiven", {
   ref: "Venue",
   localField: "_id",
-  foreignField: "feedback",
+  foreignField: "feedback.user",
 });
 
 // MODEL

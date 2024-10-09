@@ -57,7 +57,12 @@ As with the first project, I created my wireframe design with Figma. I did not l
 
 ## Challenges
 
+virtuals with foreign and local fields
+.populate()
+
 ## Wins
+
+forEach inside forEach to iterate on profile page
 
 ## Bugs
 

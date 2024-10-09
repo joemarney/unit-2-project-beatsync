@@ -1,22 +1,49 @@
   <%- include('../partials/boilerplate.ejs') %>
   <body>
+    <br/>
+    <a class="on-screen-buttons" href="/auth/log-out">LOG OUT</a>
+    <header>
     <img src="<%= profile.avatar %>" alt="<%= user.username %>'s avatar" id="avatar" />
+  </header>
     <h1 class="title"><%= user.username %></h1>
     <h2 class="title">Favourites:</h2>
     <% profile.likedVenues.forEach(like => { %>
       <ul>
         <li id="profile-list"><a class="on-screen-buttons" href="/venues/<%= like._id %>"><%= like.name %>&nbsp;<img id="small-logo" src="<%= like.logo %>"></a></li>
       </ul>
-      
       <% }) %>
-      <br />
-      <% profile.feedbackGiven.forEach(rating => { %>
-        <ul>
-          <li id="profile-list"><%= rating %></li>
-        </ul>
-        
+      <% if (profile.likedVenues.length <= 0) { %>
+        <p>You haven't favourited any venues yet!</p>
+       <% } %>
+      <h2 class="title">Feedback Given:</h2>
+      <div id="feedback-container">
+        <% profile.feedbackGiven.forEach(venue => { %>
+          <% venue.feedback.forEach(rating => { %>
+            <% if (rating.user.equals(user._id)) { %>
+              <form action="/venues/<%= venue._id %>/feedback/<%= rating.id %>?_method=DELETE" method="post">
+                <ul>
+                  <%= venue.name %>
+              <li>
+                <p class="feedback-box">
+                  <small><%= new Date(rating.createdAt).toDateString() %></small>
+                  <br/>
+                  Toilets: <%= rating.toilet %> ★<br/>
+                  Smoking Area: <%= rating.smokeArea %> ★<br/>
+                  Security: <%= rating.security %> ★<br/>
+                  Sound-System: <%= rating.soundSystem %> ★<br/>
+                  Bar Prices: <%= rating.barPrices %> ★<br/>
+                </p>
+                <button type="submit">delete</button>
+              </li>
+            </ul>
+          </form>
+          <% } %>
+       <% }) %>
         <% }) %>
-        <br/>
-      <a class="on-screen-buttons" href="/auth/log-out">LOG OUT</a>
+      </div>
+      <p id="success"><% if(message) { %><%= message %><% } %></p>
+      <% if (profile.feedbackGiven.length <= 0) { %>
+       <p>You haven't given any feedback yet!</p>
+      <% } %>
     </body>
 </html>

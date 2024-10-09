@@ -25,7 +25,7 @@ router.post("/", upload.single("logo"), async (req, res) => {
     }
     req.body.creator = req.session.user._id;
     const newVenue = await Venue.create(req.body);
-    req.session.message = "Venue Registered Successfully";
+    req.session.message = "Venue added successfully!";
     req.session.save(() => {
       return res.redirect("/venues");
     });
@@ -85,7 +85,7 @@ router.put("/:venueId", upload.single("logo"), async (req, res) => {
     if (updateVenue.creator.equals(req.session.user._id)) {
       await Venue.findByIdAndUpdate(req.params.venueId, req.body, { returnDocument: "after" });
     }
-    req.session.message = "Venue updated successfully";
+    req.session.message = "Venue updated successfully!";
     return res.redirect(`/venues/${req.params.venueId}`);
   } catch (error) {
     console.log(error);
@@ -98,7 +98,7 @@ router.delete("/:venueId", async (req, res) => {
     const deleteVenue = await Venue.findById(req.params.venueId);
     if (deleteVenue.creator.equals(req.session.user._id)) {
       await Venue.findByIdAndDelete(req.params.venueId);
-      req.session.message = "Venue deleted successfully";
+      req.session.message = "Venue deleted successfully!";
       return res.redirect("/venues");
     }
   } catch (error) {
@@ -119,7 +119,7 @@ router.get("/:venueId/feedback", async (req, res) => {
 router.post("/:venueId/feedback", async (req, res, next) => {
   try {
     req.body.user = req.session.user._id;
-    const rateVenue = await Venue.findById(req.params.venueId).populate("feedback");
+    const rateVenue = await Venue.findById(req.params.venueId);
     if (!rateVenue) return next();
     console.log(req.body);
     rateVenue.feedback.push(req.body);
@@ -131,10 +131,29 @@ router.post("/:venueId/feedback", async (req, res, next) => {
   }
 });
 
+// DELETE FEEDBACK
+router.delete("/:venueId/feedback/:feedbackId", async (req, res, next) => {
+  try {
+    const venue = await Venue.findById(req.params.venueId);
+    if (!venue) return next();
+    const deleteFeedback = venue.feedback.id(req.params.feedbackId);
+    if (!deleteFeedback) return next();
+    if (!deleteFeedback.user.equals(req.session.user._id)) {
+      throw new Error("User cannot perform this action!");
+    }
+    deleteFeedback.deleteOne();
+    req.session.message = "Feedback deleted successfully!";
+    await venue.save();
+    return res.redirect("/auth/profile");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // FAVOURITE A VENUE
 router.post("/:venueId/favourite", async (req, res, next) => {
   try {
-    const venue = await Venue.findById(req.params.venueId).populate("favourites");
+    const venue = await Venue.findById(req.params.venueId);
     if (!venue) return next();
     venue.favourites.push(req.session.user._id);
     console.log(venue);
