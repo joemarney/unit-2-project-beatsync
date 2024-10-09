@@ -3,13 +3,22 @@
     <h1 class="title">Register</h1>
     <form id="sign-up-form" action="/auth/sign-up" method="post" enctype="multipart/form-data">
       <label for="username">Username:</label>
-      <input type="text" name="username" class="username" required />
+      <input type="text" name="username" class="username" required/>
+      <% if(errors.username) { %>
+        <p id="failure"><%= errors.username.message %></p>
+        <% } %>
       <br />
       <label for="password">Password:</label>
-      <input type="password" name="password" class="password" required />
+      <input type="password" name="password" class="password" required/>
+      <% if(errors.password) { %>
+        <p id="failure"><%= errors.password.message %></p>
+        <% } %>
       <br />
       <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" name="confirmPassword" id="confirmPassword" required />
+      <input type="password" name="confirmPassword" id="confirmPassword" required/>
+      <% if(errors.password) { %>
+        <p id="failure">Please provide a matching password</p>
+        <% } %>
       <br />
       <label for="isCreator">Creator?</label>
       <input type="checkbox" name="isCreator" id="isCreator" />

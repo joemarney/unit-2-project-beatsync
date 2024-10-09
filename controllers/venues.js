@@ -9,15 +9,16 @@ const router = express.Router();
 const Venue = require("../models/venue.js");
 
 // MIDDLEWARE
+const authenticated = require("../middleware/authentication.js");
 
 // CONTROLLERS
 // NEW FORM
-router.get("/new", async (req, res) => {
+router.get("/new", authenticated, async (req, res) => {
   return res.render("venues/new.ejs");
 });
 
 // CREATE
-router.post("/", upload.single("logo"), async (req, res) => {
+router.post("/", authenticated, upload.single("logo"), async (req, res) => {
   try {
     console.log(req.body);
     if (req.file) {
@@ -82,7 +83,7 @@ router.get("/:venueId/edit", async (req, res, next) => {
 });
 
 // UPDATE
-router.put("/:venueId", upload.single("logo"), async (req, res) => {
+router.put("/:venueId", authenticated, upload.single("logo"), async (req, res) => {
   try {
     if (req.file) {
       req.body.logo = req.file.path;
@@ -101,7 +102,7 @@ router.put("/:venueId", upload.single("logo"), async (req, res) => {
 });
 
 // DELETE
-router.delete("/:venueId", async (req, res) => {
+router.delete("/:venueId", authenticated, async (req, res) => {
   try {
     const deleteVenue = await Venue.findById(req.params.venueId);
     if (deleteVenue.creator.equals(req.session.user._id)) {
@@ -125,7 +126,7 @@ router.get("/:venueId/feedback", async (req, res) => {
 });
 
 // POST FEEDBACK
-router.post("/:venueId/feedback", async (req, res, next) => {
+router.post("/:venueId/feedback", authenticated, async (req, res, next) => {
   try {
     req.body.user = req.session.user._id;
     const rateVenue = await Venue.findById(req.params.venueId);
@@ -142,7 +143,7 @@ router.post("/:venueId/feedback", async (req, res, next) => {
 });
 
 // DELETE FEEDBACK
-router.delete("/:venueId/feedback/:feedbackId", async (req, res, next) => {
+router.delete("/:venueId/feedback/:feedbackId", authenticated, async (req, res, next) => {
   try {
     const venue = await Venue.findById(req.params.venueId);
     if (!venue) return next();

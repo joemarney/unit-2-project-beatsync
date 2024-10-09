@@ -21,9 +21,11 @@ router.post("/sign-up", upload.single("avatar"), async (req, res) => {
       req.body.avatar = req.file.path;
     }
     if (req.body.password !== req.body.confirmPassword) {
-      return res.status(422).send("Passwords didn't match");
+      return res.status(422).send("Passwords did not match");
     }
-    req.body.password = bcrypt.hashSync(req.body.password, 10);
+    if (req.body.password) {
+      req.body.password = bcrypt.hashSync(req.body.password, 10);
+    }
     if (req.body.isCreator === "on") {
       req.body.isCreator = true;
     } else {
@@ -40,11 +42,7 @@ router.post("/sign-up", upload.single("avatar"), async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    if (error.code === 11000) {
-      const uniqueUser = Object.entries(error.keyValue)[0];
-      return res.status(422).send(`${uniqueUser[0]} ${uniqueUser[1]} already in use`);
-    }
-    return res.status(500).send("Error");
+    return res.status(500).render("auth/sign-up.ejs", { errors: error.errors });
   }
 });
 

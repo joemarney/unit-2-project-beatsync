@@ -15,6 +15,7 @@ const authController = require("./controllers/auth.js");
 const userEverywhere = require("./middleware/user-everywhere.js");
 const seeErrors = require("./middleware/errors.js");
 const initFlashMessage = require("./middleware/init-flash-message.js");
+const authenticated = require("./middleware/authentication.js");
 
 // MIDDLEWARE
 app.use(methodOverride("_method"));
