@@ -9,7 +9,7 @@
     <label for="description">Description</label>
     <textarea type="text" name="description" id="description" placeholder="Info about your venue..." required><%= venue.description %></textarea>
     <label for="logo">Logo:</label>
-    <input type="file" name="logo" class="logo" accept="image/*"/>
+    <input type="file" name="logo" class="logo" accept="image/jpg, image/png, image/jpeg"/>
     <br />
     <button type="submit">CHANGE <%= venue.name.toUpperCase() %></button>
   </form>
