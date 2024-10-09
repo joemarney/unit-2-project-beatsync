@@ -7,6 +7,7 @@
 
 body {
   padding-bottom: 60px;
+  font-family: "Orbitron";
 }
 
 #loading {
@@ -29,7 +30,7 @@ body {
   transform: translate(-50%, -50%);
   font-size: 20px;
   margin: 0;
-  font-family: "Quicksand";
+  font-family: "Orbitron";
 }
 
 #logo {
@@ -48,8 +49,9 @@ h2,
 h3,
 p,
 a {
-  font-family: "Quicksand";
-  margin: 20px;
+  font-family: "Orbitron";
+  margin: 10px 25px;
+  text-decoration: none;
 }
 
 #home-screen {
@@ -68,8 +70,11 @@ button {
   border-radius: 15px;
   background-color: #a10000;
   color: white;
-  margin: 15px;
+  margin: 20px;
   border: none;
+  align-self: center;
+  letter-spacing: 1px;
+  font-family: "Orbitron";
 }
 
 #sign-up-form,
@@ -86,42 +91,48 @@ button {
   border-radius: 10px;
   border: 2px solid white;
   padding: 20px;
-  margin: 10px;
+  margin: 60px;
+  font-family: "Orbitron";
+}
+
+.form-button {
+  align-self: center;
 }
 
 label {
-  font-family: "Quicksand";
+  font-family: "Orbitron";
 }
 
 input[type="text"],
 input[type="password"],
 textarea {
-  margin: 5px;
+  margin-top: 5px;
   width: 100%;
-  background-color: grey;
-  color: white;
+  background-color: white;
+  color: black;
   border: none;
-  font-family: "Quicksand";
+  font-family: "Orbitron";
 }
 input[type="file"] {
   margin: 5px;
-  font-family: "Quicksand";
+  width: 100%;
+  font-family: "Orbitron";
 }
 ::placeholder {
-  color: white;
-  font-family: "Quicksand";
+  color: grey;
+  font-family: "Orbitron";
 }
 
 #failure {
-  font-size: 10px;
+  font-size: 20px;
   color: red;
-  font-family: "Quicksand";
+  font-family: "Orbitron";
   margin: 0;
 }
 #success {
-  font-size: 10px;
+  font-size: 20px;
   color: green;
-  font-family: "Quicksand";
+  font-family: "Orbitron";
 }
 
 #avatar {
@@ -139,14 +150,9 @@ header {
   width: 100px;
 }
 
-#small-logo {
-  height: 20px;
-  width: 20px;
-}
-
 .title {
   color: white;
-  font-family: "Quicksand";
+  font-family: "Orbitron";
 }
 
 #venue-info {
@@ -157,12 +163,16 @@ header {
 }
 
 ul {
-  font-family: "Quicksand";
+  font-family: "Orbitron";
   list-style: none;
   padding: 0;
+  margin-top: 30px;
 }
 li {
+  list-style: none;
   margin-bottom: 10px;
+  margin: 10px;
+  text-decoration: none;
 }
 
 nav,
@@ -220,6 +230,7 @@ footer {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
 .favourite-btn {
@@ -239,4 +250,45 @@ footer {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
+}
+
+#venue-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.venue-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  border: white solid 2px;
+}
+
+.auth-link {
+  color: #a10000;
+}
+
+#venue {
+  font-size: 30px;
+}
+
+#small-logo {
+  height: 120px;
+  width: 120px;
+}
+
+.favourites-logo {
+  width: 20px;
+  height: 20px;
 }

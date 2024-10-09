@@ -1,8 +1,8 @@
   <%- include('../partials/boilerplate.ejs') %>
   <body>
     <h1 id="logo">BEAT<br />SYNC</h1>
-    <h1 class="title">Add a venue</h1>
     <form id="register-venue-form" action="/venues" method="post" enctype="multipart/form-data">
+      <h1 class="title">Add a venue</h1>
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" value="<%= values.name %>"  />
       <% if(errors.name) { %>
@@ -21,7 +21,7 @@
       <label for="logo">Logo:</label>
       <input type="file" name="logo" class="logo" accept="image/jpg, image/png, image/jpeg" />
       <br />
-      <button type="submit">SUBMIT</button>
+      <button class="form-button" type="submit">SUBMIT</button>
     </form>
   </body>
 </html>

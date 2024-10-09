@@ -3,12 +3,12 @@
     <% if (user) { %>
       <% if (venue.favourites.some(liker => liker.equals(user._id))) { %>
         <form action="/venues/<%= venue._id %>/favourite?_method=DELETE" method="post">
-          <button class="favourite-btn">★</button>
+          <button class="favourite-btn">♥</button>
           <span><%= venue.favourites.length %></span>
         </form>
         <% } else { %>
           <form action="/venues/<%= venue._id %>/favourite" method="post">
-            <button class="favourite-btn">☆</button>
+            <button class="favourite-btn">♡</button>
             <span><%= venue.favourites.length %></span>
       </form>
     <% } %>
@@ -22,6 +22,7 @@
     <% if (user && venue.creator._id.equals(user._id)) { %>
       <p>You created this venue</p><br/>
      <a class="on-screen-buttons" href="/venues/<%= venue._id %>/edit">EDIT <%= venue.name.toUpperCase() %></a>
+     
      <form action="/venues/<%= venue._id %>?_method=DELETE" method="post">
        <button class="on-screen-buttons">DELETE <%= venue.name.toUpperCase() %></button>
      </form>

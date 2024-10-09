@@ -9,7 +9,7 @@
     <h2 class="title">Favourites:</h2>
     <% profile.likedVenues.forEach(like => { %>
       <ul>
-        <li id="profile-list"><a class="on-screen-buttons" href="/venues/<%= like._id %>"><%= like.name %>&nbsp;<img id="small-logo" src="<%= like.logo %>"></a></li>
+        <li id="profile-list"><a class="on-screen-buttons" href="/venues/<%= like._id %>"><%= like.name %>&nbsp;<img class="favourites-logo" src="<%= like.logo %>"></a></li>
       </ul>
       <% }) %>
       <% if (profile.likedVenues.length <= 0) { %>
