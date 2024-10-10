@@ -61,18 +61,26 @@ You can check out my [Trello board][trello].
 
 ## Challenges
 
-virtuals with foreign and local fields
-.populate()
-creating a seed for db - having to change half my code where pictures should have been uploaded
+I found some aspects of this project challenging such as creating virtual fields within schemas and linking them to other models. I spent a long time reading through Mongoose documentation trying to work it out. I did have to ask for help from my instructors but after talking it through with them I do have a better understanding of how it works and where .populate() is needed and what it does.
+Another part I found difficult was creating the seed for filling my database for testing purposes. I realised that moving my file uploads to a third party(Cloudinary) it meant that my profile page would break because it couldn't recognise a file path for the avatar. This issue still remains in the code.
 
 ## Wins
 
-forEach inside forEach to iterate on profile page
-showing favourites on profile screen
-and feedback given only if ID's match up
+Compared to project 1 I found my footing much quicker this time round. The EJS templates and their logic was easier for me to understand what was happening and why. I really enjoyed aspects of the code like passing object literals to different pages so you can access and display information dynamically.
+Utilising forEach loops on my profile page stands out to me as I managed to figure it out on my own. The fact I had to iterate through an object but the information was another layer down so writing another forEach to access the array I wanted made me feel like I was coding!
+I had conditional logic throughout my templates to ensure I was only showing pictures when they were actually available. I found that if you don't have If statements to switch them off you get a placeholder image in the position where the image is supposed to be which often makes the page look bad.
 
 ## Bugs
 
-only seem to be able to upload certain pictures and i am not sure whether it is to do with size or something else.
+I have found that I can only upload certain photos as logos and avatars. I have a suspicion that it may have to do with file size or dimensions but I don't know for sure. I need to do more research.
+
+## Stretch Goals
+
+I do have some stretch goals I set at the beginning of my project. Now after reaching MVP and deployment there are some things I would either revisit or know for next time:
+
+- I would like to add an edit profile screen so the user can change their details when they wish.
+- I would like to eventually add events to the app so it can show upcoming events as well as venues.
 
 ## Attributions
+
+- [Icons DB](https://www.iconsdb.com/)
