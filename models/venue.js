@@ -19,8 +19,8 @@ const feedbackSchema = new mongoose.Schema(
 
 const venueSchema = new mongoose.Schema({
   name: { type: String, required: ["Please provide a name", true], unique: true },
-  description: { type: String, required: ["Please provide a description", true] },
   location: { type: String, required: ["Please provide a location", true], unique: true },
+  description: { type: String, required: ["Please provide a description", true] },
   logo: String,
   creator: {
     type: mongoose.Types.ObjectId,
