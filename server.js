@@ -21,7 +21,6 @@ const authenticated = require("./middleware/authentication.js");
 app.use(methodOverride("_method"));
 app.use(morgan("dev"));
 app.use(express.static("public"));
-app.use("/uploads", express.static("uploads"));
 app.use("/assets", express.static("assets"));
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -45,15 +44,6 @@ app.get("/", (req, res) => {
 app.get("/home", (req, res) => {
   try {
     res.render("home.ejs");
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-// SEARCH
-app.get("/search", async (req, res) => {
-  try {
-    return res.render("search.ejs");
   } catch (error) {
     console.log(error);
   }

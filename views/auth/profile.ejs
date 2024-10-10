@@ -3,15 +3,26 @@
     <br/>
     <a class="on-screen-buttons" href="/auth/log-out">LOG OUT</a>
     <header>
+      <% if(profile.avatar) { %>
     <img src="<%= profile.avatar %>" alt="<%= user.username %>'s avatar" id="avatar" />
+    <% } %>
   </header>
     <h1 class="title"><%= user.username %></h1>
     <h2 class="title">Favourites:</h2>
     <% profile.likedVenues.forEach(like => { %>
       <ul>
-        <li id="profile-list"><a class="on-screen-buttons" href="/venues/<%= like._id %>"><%= like.name %>&nbsp;<img class="favourites-logo" src="<%= like.logo %>"></a></li>
-      </ul>
-      <% }) %>
+        <% if(like.logo) { %>
+        <li id="profile-list"><a class="on-screen-buttons" href="/venues/<%= like._id %>"><%= like.name %>
+            <img class="favourites-logo" src="<%= like.logo %>">
+          </a>
+          </li>
+        </ul>
+        <% } else {  %>
+          <li id="profile-list"><a class="on-screen-buttons" href="/venues/<%= like._id %>"><%= like.name %>
+          </a>
+          </li>
+        </ul>
+      <% }}) %>
       <% if (profile.likedVenues.length <= 0) { %>
         <p>You haven't favourited any venues yet!</p>
        <% } %>
@@ -34,9 +45,9 @@
                   Smoking Area: <%= rating.smokeArea %> ★<br/>
                   Security: <%= rating.security %> ★<br/>
                   Sound-System: <%= rating.soundSystem %> ★<br/>
-                  Bar Prices: <%= rating.barPrices %> ★<br/>
+                  Bar Prices: <%= rating.barPrices %> ★
+                  <button class="delete-feedback-btn" type="submit"><img class="delete-feedback-icon" src="/assets/delete-64.png"></button>
                 </p>
-                <button type="submit">delete</button>
               </li>
             </ul>
           </form>

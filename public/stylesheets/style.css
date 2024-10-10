@@ -107,6 +107,7 @@ input[type="text"],
 input[type="password"],
 textarea {
   margin-top: 5px;
+  margin-bottom: 5px;
   width: 100%;
   background-color: white;
   color: black;
@@ -124,13 +125,13 @@ input[type="file"] {
 }
 
 #failure {
-  font-size: 20px;
+  font-size: 15px;
   color: red;
   font-family: "Orbitron";
   margin: 0;
 }
 #success {
-  font-size: 20px;
+  font-size: 15px;
   color: green;
   font-family: "Orbitron";
 }
@@ -291,4 +292,16 @@ footer {
 .favourites-logo {
   width: 20px;
   height: 20px;
+}
+
+.delete-feedback-btn {
+  background: transparent;
+  margin: 5px 10px;
+  padding: 0;
+  float: right;
+}
+
+.delete-feedback-icon {
+  height: 20px;
+  width: 20px;
 }

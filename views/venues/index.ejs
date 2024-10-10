@@ -6,24 +6,25 @@
       <% if(user && user.isCreator === true) { %>
         <a class="on-screen-buttons" href="/venues/new">ADD A VENUE</a>
         <% } else { %>
-          <p>No venues have been made yet.</p>
           <% if(user && user.isCreator === true) { %>
             <a class="on-screen-buttons" href="/venues/new">ADD A VENUE</a>
             <% } %>
             <% } %>
-    <% if (venues.length > 0) { %>
-      <ul>
-        <% venues.forEach(venue => { %>
-          <li class="venue-list">
-            <% if(venue.logo) {%>
-              <a id="venue" href="/venues/<%=venue._id%>"><%= venue.name %><br/><br/><img id="small-logo" src="<%= venue.logo %>"></a> 
-              <% } else {  %>
-                <a id="venue" href="/venues/<%=venue._id%>"><%= venue.name %><br/></a>
-                <% } %>
-          </li>
-          <br />
-          <% }) %>
-          <% } %>
+            <% if (venues.length > 0) { %>
+              <ul>
+                <% venues.forEach(venue => { %>
+                  <li class="venue-list">
+                    <% if(venue.logo) {%>
+                      <a id="venue" href="/venues/<%=venue._id%>"><%= venue.name %><br/><br/><img id="small-logo" src="<%= venue.logo %>"></a> 
+                      <% } else {  %>
+                        <a id="venue" href="/venues/<%=venue._id%>"><%= venue.name %><br/></a>
+                        <% } %>
+                      </li>
+                      <br />
+                      <% }) %>
+                      <% } else { %>
+                      <p>No venues have been made yet.</p>
+                      <% } %>
         </ul>
             </div>
   </body>

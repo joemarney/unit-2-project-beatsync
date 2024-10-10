@@ -7,6 +7,7 @@ const router = express.Router();
 
 // MODEL
 const User = require("../models/user.js");
+const authenticated = require("../middleware/authentication.js");
 
 // CONTROLLERS
 // SIGN UP FORM
@@ -42,7 +43,12 @@ router.post("/sign-up", upload.single("avatar"), async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).render("auth/sign-up.ejs", { errors: error.errors });
+    if (error.code === 11000) {
+      const uniqueUser = Object.entries(error.keyValue)[0];
+      return res.status(422).send(`${uniqueUser[0]} "${uniqueUser[1]}" already in use`);
+    } else {
+      return res.status(500).render("auth/sign-up.ejs", { errors: error.errors });
+    }
   }
 });
 
@@ -84,7 +90,7 @@ router.get("/log-out", (req, res) => {
 });
 
 // USER PROFILE
-router.get("/profile", async (req, res) => {
+router.get("/profile", authenticated, async (req, res) => {
   try {
     const userProfile = await User.findById(req.session.user._id).populate("likedVenues").populate("feedbackGiven");
     console.log(userProfile);
