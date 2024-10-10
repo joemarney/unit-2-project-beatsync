@@ -9,7 +9,7 @@ const feedbackSchema = new mongoose.Schema(
     soundSystem: Number,
     barPrices: Number,
     user: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
@@ -23,12 +23,12 @@ const venueSchema = new mongoose.Schema({
   description: { type: String, required: ["Please provide a description", true] },
   logo: String,
   creator: {
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
   feedback: [feedbackSchema],
-  favourites: [{ type: mongoose.Types.ObjectId, ref: "User" }],
+  favourites: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
 // MODEL
