@@ -8,6 +8,7 @@
   from = "/images/*"
   to = "/public/images/:splat"
   status = 200
+  force = true
 
 # Catch-all redirect for API calls
 [[redirects]]
