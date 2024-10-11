@@ -15,13 +15,12 @@ const authController = require("../../controllers/auth.js");
 const userEverywhere = require("../../middleware/user-everywhere.js");
 const seeErrors = require("../../middleware/errors.js");
 const initFlashMessage = require("../../middleware/init-flash-message.js");
-const authenticated = require("../../middleware/authentication.js");
 
 // MIDDLEWARE
 app.use(methodOverride("_method"));
 app.use(morgan("dev"));
 app.use(express.static("public"));
-app.use("/public/images", express.static("images"));
+// app.use("/public/images", express.static("images"));
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
