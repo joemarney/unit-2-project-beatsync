@@ -63,6 +63,7 @@ You can check out my [Trello board][trello].
 
 I found some aspects of this project challenging such as creating virtual fields within schemas and linking them to other models. I spent a long time reading through Mongoose documentation trying to work it out. I did have to ask for help from my instructors but after talking it through with them I do have a better understanding of how it works and where .populate() is needed and what it does.
 Another part I found difficult was creating the seed for filling my database for testing purposes. I realised that moving my file uploads to a third party(Cloudinary) it meant that my profile page would break because it couldn't recognise a file path for the avatar. This issue still remains in the code.
+Deploying the app online had its hurdles too. Netlify would not load the page as it was not communicating with MongoDB. I kept getting timeout errors after changing little pieces of my code to see if it was that. In the end I had to change the network access to allow from any IP address on MongoDB. After that it worked perfectly. If my database held important information obviously you couldn't do this and you would need to find another way round it.
 
 ## Wins
 
