@@ -21,7 +21,7 @@ const authenticated = require("./middleware/authentication.js");
 app.use(methodOverride("_method"));
 app.use(morgan("dev"));
 app.use(express.static("public"));
-app.use("/assets", express.static("assets"));
+app.use("/public/images", express.static("images"));
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({

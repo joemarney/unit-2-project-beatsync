@@ -2,13 +2,11 @@
   external_node_modules = ["express", "ejs"]
   node_bundler = "esbuild"
   included_files = ["views/**", "public/**"]
-  memory = 1024
-  timeout = 10
 
 # Allow direct access to static images
 [[redirects]]
   from = "/images/*"
-  to = "/public/assets/:splat"
+  to = "/public/images/:splat"
   status = 200
 
 # Catch-all redirect for API calls
