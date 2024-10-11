@@ -38,13 +38,13 @@ app.use(initFlashMessage);
 
 // LANDING PAGE/LOADING SCREEN
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("../../views/index.ejs");
 });
 
 // HOME PAGE
 app.get("/home", (req, res) => {
   try {
-    res.render("home.ejs");
+    res.render("../../views/home.ejs");
   } catch (error) {
     console.log(error);
   }
@@ -56,7 +56,7 @@ app.use("/auth", authController);
 
 // 404 HANDLER
 app.get("*", (req, res) => {
-  res.render("404.ejs");
+  res.render("../../views/404.ejs");
 });
 
 // SERVER
