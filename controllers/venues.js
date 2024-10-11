@@ -13,7 +13,7 @@ const authenticated = require("../middleware/authentication.js");
 
 // CONTROLLERS
 // NEW FORM
-router.get("/new", authenticated, async (req, res) => {
+router.get("/new", authenticated (req, res) => {
   return res.render("venues/new.ejs");
 });
 
