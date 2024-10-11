@@ -1,10 +1,10 @@
+const serverless = require("serverless-http");
 const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const MongoStore = require("connect-mongo");
-const serverless = require("serverless-http");
 require("dotenv/config");
 
 const app = express();
@@ -38,13 +38,13 @@ app.use(initFlashMessage);
 
 // LANDING PAGE/LOADING SCREEN
 app.get("/", (req, res) => {
-  res.render("../../views/index.ejs");
+  res.render("index.ejs");
 });
 
 // HOME PAGE
 app.get("/home", (req, res) => {
   try {
-    res.render("../../views/home.ejs");
+    res.render("home.ejs");
   } catch (error) {
     console.log(error);
   }
@@ -56,7 +56,7 @@ app.use("/auth", authController);
 
 // 404 HANDLER
 app.get("*", (req, res) => {
-  res.render("../../views/404.ejs");
+  res.render("404.ejs");
 });
 
 // SERVER
