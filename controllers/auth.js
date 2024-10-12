@@ -75,7 +75,6 @@ router.post("/log-in", async (req, res) => {
     req.session.save(() => {
       return res.redirect("/home");
     });
-    console.log(req.session.user);
   } catch (error) {
     console.log(error);
     return res.status(500).send("Error");
@@ -93,7 +92,6 @@ router.get("/log-out", (req, res) => {
 router.get("/profile", authenticated, async (req, res) => {
   try {
     const userProfile = await User.findById(req.session.user._id).populate("likedVenues").populate("feedbackGiven");
-    console.log(userProfile);
     return res.render("auth/profile.ejs", { profile: userProfile });
   } catch (error) {
     console.log(error);

@@ -20,7 +20,6 @@ router.get("/new", authenticated, (req, res) => {
 // CREATE
 router.post("/", authenticated, upload.single("logo"), async (req, res) => {
   try {
-    console.log(req.body);
     if (req.file) {
       req.body.logo = req.file.path;
     }
@@ -131,7 +130,6 @@ router.post("/:venueId/feedback", authenticated, async (req, res, next) => {
     req.body.user = req.session.user._id;
     const rateVenue = await Venue.findById(req.params.venueId);
     if (!rateVenue) return next();
-    console.log(req.body);
     rateVenue.feedback.push(req.body);
     req.session.message = "Feedback submitted successfully!";
     await rateVenue.save();
@@ -168,7 +166,6 @@ router.post("/:venueId/favourite", async (req, res, next) => {
     const venue = await Venue.findById(req.params.venueId);
     if (!venue) return next();
     venue.favourites.push(req.session.user._id);
-    console.log(venue);
     await venue.save();
     return res.redirect(`/venues/${req.params.venueId}`);
   } catch (error) {
